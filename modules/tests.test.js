@@ -1,6 +1,7 @@
 import {test, expect} from 'vitest';
 import {capitalize, reverseString} from './stringManipulation.js';
 import {CalculatorFactory} from './calculator.js';
+import { caesarCipher } from './caesarCipher.js';
 
 function capitalizeTests() {
   test('capitalize: First character capitalized', () => {
@@ -36,8 +37,27 @@ function CalculatorFactoryTests() {
   test('CalculatorFactory: Divide 2 numbers', () => {
     expect(CalculatorFactory().divide(10, 5)).toBe(2);
   });
+  test('CalculatorFactory: Divide by zero', () => {
+    expect(() => CalculatorFactory().divide(3, 0)).toThrow('Cannot divide by zero');
+  });
+}
+
+function caesarCipherTests() {
+  test('caesarCipher: Shift string', () => {
+    expect(caesarCipher('hi', 6)).toBe('no');
+  })
+  test('caesarCipher: Wrap from z to a', () => {
+    expect(caesarCipher('moo', 18)).toBe('egg');
+  });
+  test('caesarCipher: Keep case', () => {
+    expect(caesarCipher('mOo', 18)).toBe('eGg');
+  });
+  test('caesarCipher: Leave nonletters intact', () => {
+    expect(caesarCipher('moo 2: moo moo!', 18)).toBe('egg 2: egg egg!');
+  });
 }
 
 capitalizeTests();
 reverseStringTests();
 CalculatorFactoryTests();
+caesarCipherTests();
