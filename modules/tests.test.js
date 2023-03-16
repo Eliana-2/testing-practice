@@ -13,4 +13,14 @@ function capitalizeTests() {
   });
 }
 
+function reverseStringTests() {
+  test('String reversed', () => {
+    expect(reverseString('moo')).toBe('oom');
+  });
+  test('Empty string', () => {
+    expect(reverseString('')).toBe('');
+  });
+}
+
 capitalizeTests();
+reverseStringTests();
