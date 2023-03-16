@@ -1,7 +1,8 @@
 import {test, expect} from 'vitest';
 import {capitalize, reverseString} from './stringManipulation.js';
 import {CalculatorFactory} from './calculator.js';
-import { caesarCipher } from './caesarCipher.js';
+import {caesarCipher} from './caesarCipher.js';
+import {analyzeArray} from './analyzeArray';
 
 function capitalizeTests() {
   test('capitalize: First character capitalized', () => {
@@ -57,7 +58,26 @@ function caesarCipherTests() {
   });
 }
 
+function analyzeArrayTests() {
+  test('analyzeArray: Get average', () => {
+    expect(analyzeArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).average).toBe(5.5);
+  });
+  test('analyzeArray: Get min', () => {
+    expect(analyzeArray([1, 2, 3, 4, 5, 6, -2, 7, 8, 9, 10]).min).toBe(-2);
+  });
+  test('analyzeArray: Get max', () => {
+    expect(analyzeArray([1, 2, 3, 28, 4, 5, 6, 7, 8, 9, 10]).max).toBe(28);
+  });
+  test('analyzeArray: Get length', () => {
+    expect(analyzeArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).length).toBe(10);
+  });
+  test('analyzeArray: Empty Array', () => {
+    expect(() => analyzeArray([])).toThrow('Empty Array');
+  });
+}
+
 capitalizeTests();
 reverseStringTests();
 CalculatorFactoryTests();
 caesarCipherTests();
+analyzeArrayTests();
